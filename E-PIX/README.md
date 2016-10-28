@@ -11,15 +11,15 @@ The ID Management solution [E-PIX](https://mosaic-greifswald.de/werkzeuge-und-vo
 
 ### Run your Image
 * get necessary files from github
-  ```sh
+  ```
   git clone https://github.com/tmfev/Dockerbank
   ```
 * change to folder automatically created
-  ```sh  
+  ```
   cd Dockerbank/E-PIX
   ```
 * run docker-compose to pull and configure E-PIX
-  ```sh
+  ```
   sudo docker-compose up
   ```
 * open browser and try out the E-PIX from http://YOURIPADDRESS:8080/epix-web/html/index.xhtml
