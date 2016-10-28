@@ -2,7 +2,7 @@
 The ID Management solution [E-PIX](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/id-management-e-pix.html) (Enterprise Identifier Cross Referencing) applies the Fellegi-Sunter-algorithm and the Levenshtein distance to avoid duplicate participant entries. The independent software module facilitates participant management and multisite-aggregation of medical research data. Additionally, the correction of potential synonym errors is supported (i.e. false-negative record linkage).
 
 ### Tags
-* ` tmfev/epix:2.4.0`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/mosaic-hgw-patch-1/E-PIX/2.4.0))
+* ` tmfev/epix:2.4.0`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/E-PIX/2.4.0))
   - added: install MySQL5.7
   - added: mySQL-Skript to create database
   - added: wildfly to run E-PIX-service and E-PIX-Webfrontend
