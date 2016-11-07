@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mosaic-ths-tools-mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - ./sqls:/docker-entrypoint-initdb.d
+    labels:
+      - "service-type:db-srv"
+      - "environment:test"
+
+  wildfly:
+    image: tmfev/mosaic-ths-tools:20161107
+    container_name: mosaic-ths-tools-wildfly
+    links:
+      - "mysql:mysqldb"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    labels:
+      - "service-type:app-srv"
+      - "environment:test"
+    entrypoint: /bin/bash
+    command: -c "/opt/wait-for-it.sh mysql:3306 -t 180 && /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0"
