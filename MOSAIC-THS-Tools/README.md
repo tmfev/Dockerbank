@@ -1,7 +1,7 @@
 # MOSAIC-THS-Tools #
 
 ### Tags
-* ` tmfev/mosaic-ths-tools:20161107`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/MOSAIC-THS-Tools/20161107))
+* ` tmfev/mosaic-ths-tools:1.0`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/MOSAIC-THS-Tools/1.0))
   - added: install MySQL5.7
   - added: mySQL-Skript to create database
   - added: wildfly to run Servicea and Webfrontends for:
