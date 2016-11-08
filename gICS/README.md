@@ -16,7 +16,7 @@ The Consent Management solution [gICS](https://mosaic-greifswald.de/werkzeuge-un
   ```
 * change to folder automatically created
   ```
-  cd Dockerbank/gICS
+  cd Dockerbank/gICS/2.5.5
   ```
 * run docker-compose to pull and configure gICS
   ```
