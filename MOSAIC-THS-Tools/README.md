@@ -17,7 +17,7 @@
   ```
 * change to folder automatically created
   ```
-  cd Dockerbank/MOSAIC-THS-Tools
+  cd Dockerbank/MOSAIC-THS-Tools/1.0
   ```
 * run docker-compose to pull and configure MOSAIC-THS-Tools
   ```
