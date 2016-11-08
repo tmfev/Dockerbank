@@ -13,7 +13,7 @@ services:
       - "environment:test"
 
   wildfly:
-    image: tmfev/mosaic-ths-tools:20161107
+    image: tmfev/mosaic-ths-tools:1.0
     container_name: mosaic-ths-tools-wildfly
     links:
       - "mysql:mysqldb"
