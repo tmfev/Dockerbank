@@ -16,7 +16,7 @@ The ID Management solution [E-PIX](https://mosaic-greifswald.de/werkzeuge-und-vo
   ```
 * change to folder automatically created
   ```
-  cd Dockerbank/E-PIX
+  cd Dockerbank/E-PIX/2.4.0
   ```
 * run docker-compose to pull and configure E-PIX
   ```
