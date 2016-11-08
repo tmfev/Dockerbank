@@ -16,7 +16,7 @@ The [gPAS](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/pseudonymverwaltu
   ```
 * change to folder automatically created
   ```
-  cd Dockerbank/gPAS
+  cd Dockerbank/gPAS/1.7.8
   ```
 * run docker-compose to pull and configure gPAS
   ```
