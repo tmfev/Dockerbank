@@ -1,0 +1,42 @@
+version: '2'
+services:
+  transmartdbdata:
+    image: tmfev/transmart-db-data
+    volumes:
+      - /opt/pg
+  transmartdb:
+    image: tmfev/transmart-db
+    environment:
+      - "PGDATA=/opt/pg/data"
+      - "POSTGRES_PASSWORD=docker"
+    ports:
+     - "5432:5432"
+    depends_on:
+     - transmartdbdata
+    volumes_from:
+     - transmartdbdata
+  transmartdbmanage:
+    image: tmfev/transmart-db-manage
+    depends_on:
+      - transmartdb
+    links: 
+      - transmartdb:transmart-db
+    environment:
+      - "POSTGRES_PASSWORD=docker"
+      - "DROP=false"
+      - "UPLOAD=true"
+    entrypoint: bash /opt/wait-for-pg.sh transmart-db
+  transmartapp:
+    image: tmfev/transmart-app
+    depends_on:
+      - transmartdb
+    links:
+      - transmartdb:transmart-db
+    environment:
+      - "POSTGRES_PASSWORD=docker"
+    entrypoint: bash /opt/wait-for-pg.sh transmart-db
+    cap_add:
+      - SYS_PTRACE
+    ports:
+      - "8080:8080"
+
