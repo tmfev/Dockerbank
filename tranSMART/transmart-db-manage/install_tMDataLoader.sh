@@ -14,9 +14,9 @@ psql -d transmart -f post_1.1.0_update.sql
 
 echo ' ... creating tMDataLoader db tables'
 cd /opt/tMDataLoader/sql/postgres/
-psql -U postgres -w -d transmart -h transmart-db -f migrations.sql
-psql -U postgres -w -d transmart -h transmart-db -f permissions.sql
-psql -U postgres -w -d transmart -h transmart-db -f procedures.sql
+psql -d transmart -f migrations.sql
+psql -d transmart -f permissions.sql
+psql -d transmart -f procedures.sql
 
 
 

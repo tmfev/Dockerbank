@@ -1,6 +1,9 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
 
+# Setting Passwords
+sed -i "s/db.password =.*$/db.password = '$POSTGRES_PASSWORD'/" /opt/tMDataLoader/Config.groovy 
+
 
 if  [ ! -s "/opt/transmart-data" ]; then
 # Clone git repository
@@ -11,7 +14,7 @@ if  [ ! -s "/opt/transmart-data" ]; then
 fi
 
 cd /opt/transmart-data
-mv /opt/vars .
+cp /opt/vars .
   . ./vars
 
 

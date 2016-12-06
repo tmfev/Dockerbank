@@ -16,6 +16,7 @@ RUN apt-get update \
     make \
     curl \
     php5 \
+    php5-cli \
     vim \
     openjdk-7-jdk \
     wget \
@@ -27,11 +28,10 @@ RUN apt-get update \
 ENV DROP false
 
 WORKDIR /opt/
-RUN git clone https://github.com/ThomsonReuters-LSPS/tMDataLoader tMDataLoader
-
-WORKDIR /opt/tMDataLoader
-RUN ./gradlew deployJar 
-RUN sed -i "s/db.hostname =.*$/db.hostname = 'transmart-db'/" Config.groovy \
+RUN git clone https://github.com/ThomsonReuters-LSPS/tMDataLoader tMDataLoader \
+&& cd /opt/tMDataLoader \
+&& ./gradlew deployJar \
+&& sed -i "s/db.hostname =.*$/db.hostname = 'transmart-db'/" Config.groovy \
 && sed -i "s/db.port =.*$/db.port = 5432/" Config.groovy \
 && sed -i "s/db.username =.*$/db.username = 'postgres'/" Config.groovy \
 && sed -i "s/db.password =.*$/db.password = '$POSTGRES_PASSWORD'/" Config.groovy \
@@ -41,16 +41,23 @@ RUN sed -i "s/db.hostname =.*$/db.hostname = 'transmart-db'/" Config.groovy \
 && sed -i "s|//db.jdbcDriver = 'org.postgresql|db.jdbcDriver = 'org.postgresql|g" Config.groovy \
 && sed -i "s|//db.sql.storedProcedureSyntax = 'PostgreSQL'|db.sql.storedProcedureSyntax = 'PostgreSQL'|g" Config.groovy \
 && sed -i "s|dataDir = .*$|dataDir =  '/opt/tMDataLoaderData'|g" Config.groovy \
-&& sed -i "s/CREATE ROLE tm_dataloader.*$/CREATE ROLE tm_dataloader LOGIN PASSWORD '$POSTGRES_PASSWORD';/" sql/postgres/migrations/20140724000000000_CREATE_TM_DATALOADER_SCHEMA.sql
-
-RUN git clone https://github.com/eugene-rakhmatulin/transmartApp-DB.git -b post_GPL1.1.0_fixes
-
+&& sed -i "s/CREATE ROLE tm_dataloader.*$/CREATE ROLE tm_dataloader LOGIN PASSWORD '$POSTGRES_PASSWORD';/" sql/postgres/migrations/20140724000000000_CREATE_TM_DATALOADER_SCHEMA.sql \
+&& git clone https://github.com/eugene-rakhmatulin/transmartApp-DB.git -b post_GPL1.1.0_fixes \
+&& mkdir /opt/backup \
+&& mkdir -p /opt/backup/sql/postgres \
+&& mkdir -p /opt/backup/transmartApp-DB/postgresql_wGEO \
+&& mv /opt/tMDataLoader/sql/postgres/ /opt/backup/sql/ \
+&& mv /opt/tMDataLoader/transmartApp-DB/postgresql_wGEO/ /opt/backup/transmartApp-DB/postgresql_wGEO/ \
+&& mv /opt/tMDataLoader/tm_etl.jar /opt/backup/ \
+&& mv /opt/tMDataLoader/Config.groovy /opt/backup/ \
+&& rm -rf /opt/tMDataLoader/ \
+&& mv /opt/backup/ /opt/tMDataLoader
 
 WORKDIR /opt/
-RUN  git clone $GITREPO transmart-data
+RUN  git clone $GITREPO transmart-data --branch ${VERSION} --single-branch
 
-WORKDIR /opt/transmart-data
-RUN  git checkout ${VERSION}
+#WORKDIR /opt/transmart-data 
+#RUN  git checkout ${VERSION}
 
 RUN mkdir -p '/opt/tMDataLoaderData/Public Studies' \
    && mkdir -p '/opt/tMDataLoaderData/Private Studies'
@@ -80,10 +87,6 @@ RUN  chmod +x /opt/install_tMDataLoader.sh \
     && chmod +x /opt/wait-for-pg.sh
 
 RUN chmod +x /opt/wait-for-pg.sh
-
-#&& unzip -o "*.zip" \
-#&& rm -f *.zip \
-#&& chmod 777 /opt/tMDataLoaderData/* -R
 
 
 ENV UPLOAD = false

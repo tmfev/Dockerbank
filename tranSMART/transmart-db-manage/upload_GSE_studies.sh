@@ -44,7 +44,7 @@ cd /opt/
 
 
 cd /opt/tMDataLoaderData/Public\ Studies
-rm -r /opt/tMDataLoaderData/Public\Studies/Brea*
+rm -r /opt/tMDataLoaderData/Public\ Studies/Brea*
 unzip -o "GSE24060.zip" \
 && rm -f *GSE24060.zip \
 && chmod 777 /opt/tMDataLoaderData/* -R
