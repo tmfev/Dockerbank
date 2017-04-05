@@ -9,7 +9,7 @@ ENV POSTGRES_PASSWORD POSTGRESSPASSWORDCHANGEME
 ENV GITREPO https://github.com/tranSMART-Foundation/transmartApp.git
 ENV GITREPODATA https://github.com/tranSMART-Foundation/transmart-data.git
 
-ENV VERSION release-16.1
+ENV VERSION release-16.2
 
 ENV transmartApp /opt/transmartApp
 

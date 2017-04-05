@@ -5,7 +5,7 @@ MAINTAINER Benjamin Baum "Benjamin.Baum@med.uni-goettingen.de"
 
 ENV POSTGRES_PASSWORD POSTGRESSPASSWORDCHANGEME
 ENV GITREPO https://github.com/tranSMART-Foundation/transmart-data.git 
-ENV VERSION release-16.1
+ENV VERSION release-16.2
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-amd64
 
@@ -54,7 +54,7 @@ RUN git clone https://github.com/ThomsonReuters-LSPS/tMDataLoader tMDataLoader \
 && mv /opt/backup/ /opt/tMDataLoader
 
 WORKDIR /opt/
-RUN  git clone $GITREPO transmart-data --branch ${VERSION} --single-branch
+RUN  git clone $GITREPO transmart-data --branch ${VERSION}
 
 #WORKDIR /opt/transmart-data 
 #RUN  git checkout ${VERSION}

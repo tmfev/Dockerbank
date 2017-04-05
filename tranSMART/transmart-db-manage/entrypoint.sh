@@ -5,13 +5,14 @@ export PGPASSWORD=$POSTGRES_PASSWORD
 sed -i "s/db.password =.*$/db.password = '$POSTGRES_PASSWORD'/" /opt/tMDataLoader/Config.groovy 
 
 
-if  [ ! -s "/opt/transmart-data" ]; then
+#if  [ ! -s "/opt/transmart-data" ]; then
 # Clone git repository
   cd /opt/
   git clone $GITREPO transmart-data
   cd /opt/transmart-data
+echo ${VERSION}
   git checkout ${VERSION}
-fi
+#fi
 
 cd /opt/transmart-data
 cp /opt/vars .
