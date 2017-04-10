@@ -10,5 +10,6 @@ FROM postgres:9.3
 #RUN chown -R postgres:postgres /opt/pg
 
 COPY fixpermissions.sh /docker-entrypoint-initdb.d/
+RUN chmod +x /docker-entrypoint-initdb.d/fixpermissions.sh
 EXPOSE 5432
 CMD ["postgres"]
