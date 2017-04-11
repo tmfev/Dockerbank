@@ -1,4 +1,4 @@
-required.packages <- c("reshape2", "ggplot2", "data.table", "Cairo",
+required.packages <- c("Rserv","reshape2", "ggplot2", "data.table", "Cairo",
 		"snowfall", "gplots", "Rserve", "foreach", "doParallel");
 missing.packages <- function(required) {
 	return(required[

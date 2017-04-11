@@ -34,6 +34,7 @@ RUN apt-get update && apt-get -y upgrade && apt-get -y install git \
     postgresql-client \
     make \
     curl \
+    libcurl4-gnutls-dev \
     php5 \
     vim \
     unzip \
@@ -86,6 +87,9 @@ RUN wget https://github.com/grails/grails-core/releases/download/v$GRAILS_VERSIO
 && rm -r /root/.grails \
 && rm -r /usr/lib/jvm/grails*
 
+#WORKDIR /opt/transmart-data
+#RUN R CMD install.packages("Rserv")
+#&& Rscript R/other_pkg.R 
 
 COPY vars /opt/vars
 COPY entrypoint.sh /opt/entrypoint.sh
