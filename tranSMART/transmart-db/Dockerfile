@@ -21,7 +21,7 @@ RUN mkdir -p /opt/pg/tablespaces/biomart \
   && chown -R postgres:postgres /opt/pg
 
 
-COPY fixpermissions.sh /docker-entrypoint-initdb.d/
-RUN chmod +x /docker-entrypoint-initdb.d/fixpermissions.sh
+#COPY fixpermissions.sh /docker-entrypoint-initdb.d/
+#RUN chmod +x /docker-entrypoint-initdb.d/fixpermissions.sh
 EXPOSE 5432
 CMD ["postgres"]
