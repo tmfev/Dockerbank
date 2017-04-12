@@ -4,15 +4,14 @@ export PGPASSWORD=$POSTGRES_PASSWORD
 # Setting Passwords
 sed -i "s/db.password =.*$/db.password = '$POSTGRES_PASSWORD'/" /opt/tMDataLoader/Config.groovy 
 
-
-#if  [ ! -s "/opt/transmart-data" ]; then
-# Clone git repository
+if  [ ! -s "/opt/transmart-data" ]; then
+  # Clone git repository
   cd /opt/
   git clone $GITREPO transmart-data
   cd /opt/transmart-data
-echo ${VERSION}
+  echo ${VERSION}
   git checkout ${VERSION}
-#fi
+fi
 
 cd /opt/transmart-data
 cp /opt/vars .
@@ -38,19 +37,24 @@ if ! psql -h transmart-db -U "postgres" -w -lqt | cut -d \| -f 1 | grep -qw tran
   make -j4 postgres
 # Set BIOMART_USER password
   psql -U postgres -d transmart -c "ALTER USER BIOMART_USER WITH PASSWORD '$POSTGRES_PASSWORD'"
-
-#Install tmDataLoader, TODO use environment variable
-echo 'creating tmDataLoader sql tables'
-/opt/install_tMDataLoader.sh
-
 else
   echo "tranSMART Database already installed."
 fi
 
-if [ $UPLOAD == "true" ]; then
-echo 'downloading free studies and upload with tMDataLoader'
-/opt/upload_GSE_studies.sh
+#Install tmDataLoader, TODO use environment variable
+if [ $TMDATALOADER == "true" ] || [ $UPLOAD == "true" ]; then
+  echo 'creating tmDataLoader sql tables'
+  /opt/install_tMDataLoader.sh
 fi
+
+if [ $UPLOAD == "true" ]; then
+  echo 'downloading free studies and upload with tMDataLoader'
+  /opt/upload_GSE_studies.sh
+fi
+
+echo 'installing transmart-batch'
+/opt/install_transmart-batch.sh
+
 cd /opt
 
 # Run command passed by docker run 

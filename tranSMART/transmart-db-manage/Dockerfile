@@ -4,10 +4,13 @@ FROM ubuntu:14.04
 MAINTAINER Benjamin Baum "Benjamin.Baum@med.uni-goettingen.de"
 
 ENV POSTGRES_PASSWORD POSTGRESSPASSWORDCHANGEME
+ENV DROP false
+ENV TMDATALOADER false
+ENV UPLOAD false
+
 ENV GITREPO https://github.com/tranSMART-Foundation/transmart-data.git 
 ENV VERSION release-16.2
-
-ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 RUN apt-get update \
     && apt-get -y install \
@@ -18,15 +21,29 @@ RUN apt-get update \
     php5 \
     php5-cli \
     vim \
-    openjdk-7-jdk \
     wget \
     unzip \
+    software-properties-common \
+    && add-apt-repository ppa:openjdk-r/ppa \
+    && apt-get update \
+    && apt-get -y install openjdk-8-jdk \
     && apt-get -y upgrade \
     && rm -rf /var/lib/apt/lists/* # Clean apt cache
 
+# compile transmart-batch and run it once
+WORKDIR /opt/
+RUN git clone https://github.com/tranSMART-Foundation/transmart-batch.git --branch release-16.2 transmart-batch
+WORKDIR /opt/transmart-batch
+RUN ./gradlew capsule 
+RUN mv build/libs/* ./transmart-batch.jar \
+    && touch /opt/transmart-batch/batchdb.properties \ 
+    && echo "batch.jdbc.driver=org.postgresql.Driver" >> /opt/transmart-batch/batchdb.properties \
+    && echo "batch.jdbc.url=jdbc:postgresql://transmart-db:5432/transmart" >> /opt/transmart-batch/batchdb.properties \
+    && echo "batch.jdbc.user=postgres" >> /opt/transmart-batch/batchdb.properties \
+    && echo "batch.jdbc.password=$POSTGRES_PASSWORD" >> /opt/transmart-batch/batchdb.properties \
+    && echo "alias tmbatch='/opt/transmart-batch/transmart-batch.jar -c /opt/transmart-batch/batchdb.properties'" >> ~/.bashrc 
 
-ENV DROP false
-
+# compile and config tMDataLoader
 WORKDIR /opt/
 RUN git clone https://github.com/ThomsonReuters-LSPS/tMDataLoader tMDataLoader \
 && cd /opt/tMDataLoader \
@@ -53,9 +70,9 @@ RUN git clone https://github.com/ThomsonReuters-LSPS/tMDataLoader tMDataLoader \
 && rm -rf /opt/tMDataLoader/ \
 && mv /opt/backup/ /opt/tMDataLoader
 
+# clone transmart-data
 WORKDIR /opt/
 RUN  git clone $GITREPO transmart-data --branch ${VERSION}
-
 #WORKDIR /opt/transmart-data 
 #RUN  git checkout ${VERSION}
 
@@ -65,31 +82,25 @@ RUN mkdir -p '/opt/tMDataLoaderData/Public Studies' \
 RUN echo transmart-db:5432:transmart:postgres:$POSTGRES_PASSWORD > /root/.pgpass \
 && chmod 600 /root/.pgpass
 
-
 WORKDIR /opt/tMDataLoaderData/Public\ Studies
 RUN wget https://github.com/ThomsonReuters-LSPS/tMDataSamples/raw/master/ETL_Samples/Public%20Studies/Breast%20Cancer_Desmedt_GSE7390.zip \
 && wget http://www.ranchobiosciences.com/downloads/GSE24060.zip
 
-
-
-# COPY #
+# COPY
 COPY vars /opt/
 COPY entrypoint.sh /opt/
+COPY install_transmart-batch.sh /opt/
 COPY install_tMDataLoader.sh /opt/
 COPY upload_GSE_studies.sh /opt/
 COPY upload.sh /opt/
 COPY wait-for-pg.sh /opt/
 
-
-RUN  chmod +x /opt/install_tMDataLoader.sh \
+RUN chmod +x /opt/install_tMDataLoader.sh \
     && chmod +x /opt/upload_GSE_studies.sh \
     && chmod +x /opt/upload.sh \
-    && chmod +x /opt/wait-for-pg.sh
+    && chmod +x /opt/install_transmart-batch.sh
 
-RUN chmod +x /opt/wait-for-pg.sh
-
-
-ENV UPLOAD = false
 ENTRYPOINT ["/opt/entrypoint.sh"]
 
 CMD ["/bin/bash"]
+
