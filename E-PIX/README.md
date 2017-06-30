@@ -7,7 +7,7 @@ The ID Management solution [E-PIX](https://mosaic-greifswald.de/werkzeuge-und-vo
   - added: mySQL-Skript to create database
   - added: wildfly to run E-PIX-service and E-PIX-Webfrontend
   - tested with docker v1.10.3 and docker-compose v1.8.0
-  - visit [MOSAIC-Homepage](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/id-management-e-pix.html) for more information
+  - visit [Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/id-management-e-pix.html) for more information
 
 ### Run your Image
 * get necessary files from github
