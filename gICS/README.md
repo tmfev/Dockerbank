@@ -7,7 +7,7 @@ The Consent Management solution [gICS](https://mosaic-greifswald.de/werkzeuge-un
   - added: mySQL-Skript to create database
   - added: wildfly to run gICS-Service and gICS-Webfrontend
   - tested with docker v1.10.3 and docker-compose v1.8.0
-  - visit [MOSAIC-Homepage](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/einwilligungsmanagement-gics.html) for more information
+  - visit [Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/einwilligungsmanagement-gics.html) for more information
 
 ### Run your Image
 * get necessary files from github
