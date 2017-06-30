@@ -3,7 +3,7 @@ version: '2'
 services:
   mysql:
     image: mysql:5.7
-    container_name: mosaic-gpas-1.7.10-mysql
+    container_name: mosaic-project-gpas-1.7.10-mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     volumes:
@@ -15,7 +15,7 @@ services:
 
   wildfly:
     image: tmfev/gpas:1.7.10
-    container_name: mosaic-gpas-1.7.10-wildfly
+    container_name: mosaic-project-gpas-1.7.10-wildfly
     links:
       - "mysql:mysqldb"
     ports:
