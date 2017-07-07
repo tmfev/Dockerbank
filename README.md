@@ -8,5 +8,5 @@ Dockerfiles for TMF docker images
   - [2.5.5](https://github.com/tmfev/Dockerbank/tree/master/gICS/2.5.5)
 - [gPAS](https://github.com/tmfev/Dockerbank/tree/master/gPAS) (generic Pseudonym Administration Service, for more information visit [Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/pseudonymverwaltung-gpas.html))
   - [1.7.10](https://github.com/tmfev/Dockerbank/tree/master/gPAS/1.7.10)
-- [MOSAIC-Project-THS-Tools](https://github.com/tmfev/Dockerbank/tree/master/MOSAIC-THS-Tools) (combined E-PIX, gICS and gPAS in one image)
-  - [1.0](https://github.com/tmfev/Dockerbank/tree/master/MOSAIC-THS-Tools/1.0)
+- [THS-Tools](https://github.com/tmfev/Dockerbank/tree/master/THS-Tools) (combined E-PIX, gICS and gPAS in one image)
+  - [1.0](https://github.com/tmfev/Dockerbank/tree/master/THS-Tools/1.0)
