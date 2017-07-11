@@ -1,10 +1,10 @@
-# MOSAIC-THS-Tools #
+# THS-Tools #
 
 ### Tags
-* ` tmfev/mosaic-ths-tools:1.0`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/THS-Tools/1.0))
+* ` tmfev/ths-tools:1.0`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/THS-Tools/1.0))
   - added: install MySQL5.7
   - added: mySQL-Skript to create database
-  - added: wildfly to run Servicea and Webfrontends for:
+  - added: wildfly to run Service and Webfrontends for:
     - E-PIX v2.4.0 ([Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/id-management-e-pix.html))
     - gICS v2.5.5 ([Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/einwilligungsmanagement-gics.html))
     - gPAS v1.7.8 ([Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/pseudonymverwaltung-gpas.html))
