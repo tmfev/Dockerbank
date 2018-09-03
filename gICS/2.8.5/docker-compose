@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: tmf-gics-2.8.5-mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - ./sqls:/docker-entrypoint-initdb.d
+    labels:
+      - "service-name:gics"
+      - "service-type:db-srv"
+      - "environment:test"
+
+  wildfly:
+    build: .
+    image: tmf/gics-2.8.5
+    container_name: tmf-gics-2.8.5-wildfly
+    links:
+      - "mysql:mysqldb"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    labels:
+      - "service-name:gics"
+      - "service-type:app-srv"
+      - "environment:test"
+    entrypoint: /bin/bash
+    command: -c "/opt/wait-for-it.sh mysql:3306 -t 120 && /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0"
