@@ -14,7 +14,7 @@ services:
       - "environment:test"
 
   wildfly:
-    image: tmf/gics:2.8.5
+    image: tmfev/gics:2.8.5
     container_name: tmf-gics-2.8.5-wildfly
     links:
       - "mysql:mysqldb"
