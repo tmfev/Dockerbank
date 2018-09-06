@@ -27,4 +27,4 @@ services:
       - "service-type:app-srv"
       - "environment:test"
     entrypoint: /bin/bash
-    command: -c "/opt/wait-for-it.sh mysql:3306 -t 120 && /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0"
+    command: -c "./wait-for-it.sh mysql:3306 -t 60 && ./run.sh"
