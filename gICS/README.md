@@ -2,6 +2,10 @@
 The Consent Management solution [gICS](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/einwilligungsmanagement-gics.html) (generic Informed Consent Service) supports the management of digital informed consent documents. It facilitates checking  for various policies and modules of a consent in real time. 
 
 ### Tags
+* ` tmfev/gics:2.8.5`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/gICS/2.8.5))
+   - from: mosaicgreifswald/wildfly:12.0.0.Final
+   - updated: gICS 2.5.5 to 2.8.5
+
 * ` tmfev/gics:2.5.5`,`latest` ([Docker-Compose File and SQLs](https://github.com/tmfev/Dockerbank/tree/master/gICS/2.5.5))
   - added: install MySQL5.7
   - added: mySQL-Skript to create database
@@ -16,7 +20,7 @@ The Consent Management solution [gICS](https://mosaic-greifswald.de/werkzeuge-un
   ```
 * change to folder automatically created
   ```
-  cd Dockerbank/gICS/2.5.5
+  cd Dockerbank/gICS/2.8.5
   ```
 * run docker-compose to pull and configure gICS
   ```
