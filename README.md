@@ -1,12 +1,10 @@
 # Dockerbank
-Dockerfiles for TMF docker images
+Docker Compose Files
 
-### Tools
-- [E-PIX](https://github.com/tmfev/Dockerbank/tree/master/E-PIX) (Enterprise Identifier Cross Referencing, for more information visit [Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/id-management-e-pix.html))
-  - [2.4.0](https://github.com/tmfev/Dockerbank/tree/master/E-PIX/2.4.0)
-- [gICS](https://github.com/tmfev/Dockerbank/tree/master/gICS) (generic Informed Consent Service, for more information visit [Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/einwilligungsmanagement-gics.html))
-  - [2.5.5](https://github.com/tmfev/Dockerbank/tree/master/gICS/2.5.5)
-- [gPAS](https://github.com/tmfev/Dockerbank/tree/master/gPAS) (generic Pseudonym Administration Service, for more information visit [Homepage of the MOSAIC-Project](https://mosaic-greifswald.de/werkzeuge-und-vorlagen/pseudonymverwaltung-gpas.html))
-  - [1.7.10](https://github.com/tmfev/Dockerbank/tree/master/gPAS/1.7.10)
-- [THS-Tools](https://github.com/tmfev/Dockerbank/tree/master/THS-Tools) (combined E-PIX, gICS and gPAS in one image)
-  - [1.0](https://github.com/tmfev/Dockerbank/tree/master/THS-Tools/1.0)
+### Tools of the MOSAIC Project
+- [E-PIX](https://github.com/mosaic-hgw/Dockerbank/tree/master/E-PIX) (Enterprise Identifier Cross Referencing, for more information visit [ths-greifswald.de](https://ths-greifswald.de/epix))
+  - [2.9.0](https://github.com/mosaic-hgw/Dockerbank/tree/master/E-PIX)
+- [gICS](https://github.com/tmfev/Dockerbank/tree/master/gICS) (generic Informed Consent Service, for more information visit [ths-greifswald.de](https://ths-greifswald.de/gics))
+  - [2.9.1](https://github.com/mosaic-hgw/Dockerbank/tree/master/gICS)
+- [gPAS](https://github.com/tmfev/Dockerbank/tree/master/gPAS) (generic Pseudonym Administration Service, for more information visit [ths-greifswald.de](https://ths-greifswald.de/gPAS))
+  - [1.8.1](https://github.com/mosaic-hgw/Dockerbank/tree/master/gPAS)
